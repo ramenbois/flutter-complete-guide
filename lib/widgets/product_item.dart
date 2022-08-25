@@ -6,16 +6,7 @@ import '../screens/product_detail_screen.dart';
 import '../providers/product.dart';
 
 class ProductItem extends StatelessWidget {
-  const ProductItem({
-    Key? key,
-    // this.id,
-    // this.title,
-    // this.imageUrl,
-  }) : super(key: key);
-
-  // final String? id;
-  // final String? title;
-  // final String? imageUrl;
+  const ProductItem({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

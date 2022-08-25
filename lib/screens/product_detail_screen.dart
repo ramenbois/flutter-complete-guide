@@ -4,12 +4,7 @@ import 'package:provider/provider.dart';
 import '../providers/product_provider.dart';
 
 class ProductDetailScreen extends StatelessWidget {
-  const ProductDetailScreen({
-    Key? key,
-    // this.title,
-  }) : super(key: key);
-
-  // final String? title;
+  const ProductDetailScreen({Key? key}) : super(key: key);
 
   static const routeName = '/product-detail';
 
