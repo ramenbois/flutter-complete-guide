@@ -24,7 +24,7 @@ class ProductItem extends StatelessWidget {
             );
           },
           child: Image.network(
-            product.imageUrl!,
+            product.imageUrl,
             fit: BoxFit.cover,
           ),
         ),
@@ -34,21 +34,32 @@ class ProductItem extends StatelessWidget {
             builder: (context, product, _) => IconButton(
               onPressed: () => product.toggleFavoriteStatus(),
               icon: Icon(
-                product.isFavorite! ? Icons.favorite : Icons.favorite_border,
+                product.isFavorite ? Icons.favorite : Icons.favorite_border,
               ),
               color: Colors.deepOrange,
             ),
           ),
           title: Text(
-            product.title!,
+            product.title,
             textAlign: TextAlign.center,
           ),
           trailing: IconButton(
-            onPressed: () => cart.addItem(
-              product.id!,
-              product.price!,
-              product.title!,
-            ),
+            onPressed: () {
+              cart.addItem(product.id, product.price, product.title);
+              ScaffoldMessenger.of(context).hideCurrentSnackBar();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: const Text('Added item to cart!'),
+                  duration: const Duration(seconds: 2),
+                  action: SnackBarAction(
+                    label: 'UNDO',
+                    onPressed: () {
+                      cart.removeSingleItem(product.id);
+                    },
+                  ),
+                ),
+              );
+            },
             icon: const Icon(
               Icons.shopping_cart,
             ),
